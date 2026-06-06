@@ -470,26 +470,6 @@
             font-size: .88rem;
         }
 
-        .final-cta {
-            padding: 55px 25px;
-            border: 1px solid rgba(140, 161, 255, .18);
-            border-radius: 22px;
-            background:
-                radial-gradient(circle at 20% 100%, rgba(71, 135, 255, .13), transparent 42%),
-                radial-gradient(circle at 90% 0%, rgba(149, 92, 246, .12), transparent 40%),
-                var(--surface);
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            margin-bottom: 12px;
-        }
-
-        .final-cta p {
-            margin-bottom: 24px;
-            color: var(--muted);
-        }
-
         .site-footer {
             padding: 30px 0;
             border-top: 1px solid var(--line);
@@ -620,7 +600,7 @@
             <div class="container">
                 <span class="eyebrow">AI video subtitles</span>
                 <h1>AI Subtitle Generator <span class="gradient-text">for Videos</span></h1>
-                <p class="hero-copy">Generate subtitles, preview them in sync with your video, and download editable VTT/SRT files.</p>
+                <p class="hero-copy">MultMatrix helps you generate subtitles for videos, preview them in sync, and download editable VTT/SRT files.</p>
                 <div class="hero-actions">
                     <a class="button button-primary" href="https://sub.multmatrix.com/">Start Generating Subtitles</a>
                     <a class="button button-secondary" href="#demo">Watch Demo</a>
@@ -674,17 +654,17 @@
                     <article class="card">
                         <span class="card-number">01</span>
                         <h3>Generate subtitles</h3>
-                        <p>Turn spoken video content into timed subtitles with AI.</p>
+                        <p>Use the AI video subtitle generator to turn spoken content into timed text.</p>
                     </article>
                     <article class="card">
                         <span class="card-number">02</span>
                         <h3>Preview in sync</h3>
-                        <p>Review subtitle text and timing while the video plays.</p>
+                        <p>Use the synchronized subtitle preview to review text and timing while video plays.</p>
                     </article>
                     <article class="card">
                         <span class="card-number">03</span>
                         <h3>Download VTT/SRT</h3>
-                        <p>Download editable subtitle files for your video workflow.</p>
+                        <p>Download editable VTT/SRT subtitles for your video workflow.</p>
                     </article>
                 </div>
             </div>
@@ -732,12 +712,12 @@
                         <p>Yes. You can play your video with subtitles and review the timing before downloading.</p>
                     </details>
                     <details>
-                        <summary>Can I download subtitle files?</summary>
+                        <summary>Can I download VTT or SRT subtitle files?</summary>
                         <p>Yes. The subtitle tool supports downloading editable VTT and SRT subtitle files.</p>
                     </details>
                     <details>
                         <summary>Can I translate subtitles?</summary>
-                        <p>Yes. MultMatrix can translate generated subtitles for multilingual video content.</p>
+                        <p>Yes. Subtitle translation helps prepare generated subtitles for multilingual video content.</p>
                     </details>
                     <details>
                         <summary>What video links are supported?</summary>
@@ -747,15 +727,6 @@
             </div>
         </section>
 
-        <section class="section">
-            <div class="container">
-                <div class="final-cta">
-                    <h2>Generate subtitles for your video.</h2>
-                    <p>Preview the result in sync and download editable subtitle files.</p>
-                    <a class="button button-primary" href="https://sub.multmatrix.com/">Start Generating Subtitles</a>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer class="site-footer">
@@ -772,6 +743,7 @@
     <script>
         (() => {
             const video = document.getElementById("demoVideo");
+            const sourceTrack = video.querySelector("track");
             const list = document.getElementById("transcriptList");
             const status = document.getElementById("demoStatus");
             const vttUrl = "https://media.multmatrix.com/default.vtt";
@@ -839,6 +811,17 @@
                 });
             };
 
+            const showCuesOnVideo = () => {
+                if (!window.VTTCue || !video.addTextTrack) return;
+                if (sourceTrack && sourceTrack.track) sourceTrack.track.mode = "disabled";
+
+                const previewTrack = video.addTextTrack("subtitles", "Demo subtitles", "en");
+                previewTrack.mode = "showing";
+                cues.forEach((cue) => {
+                    previewTrack.addCue(new VTTCue(cue.start, cue.end, cue.text));
+                });
+            };
+
             const updateActiveCue = () => {
                 const time = video.currentTime;
                 const nextIndex = cues.findIndex((cue) => time >= cue.start && time < cue.end);
@@ -861,6 +844,7 @@
                 cues = fallbackCues;
                 status.textContent = "Demo subtitles";
                 renderCues();
+                showCuesOnVideo();
             };
 
             fetch(vttUrl)
@@ -872,6 +856,7 @@
                     cues = parseVtt(text);
                     status.textContent = "Subtitles loaded";
                     renderCues();
+                    showCuesOnVideo();
                 })
                 .catch(useFallback);
 

@@ -4,20 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MultMatrix — AI Subtitle Generator & Translator</title>
-    <meta name="description" content="Generate and translate subtitles with AI using MultMatrix. Turn video content into accessible, multilingual subtitles with a simple online workflow.">
+    <title>MultMatrix AI Subtitle Generator — Translate, Preview & Download</title>
+    <meta name="description" content="Generate, translate, preview, and download subtitles for videos with MultMatrix. Create editable VTT/SRT files or burned-in subtitle video output online.">
     <meta name="theme-color" content="#080b14">
     <link rel="canonical" href="https://multmatrix.com/">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://multmatrix.com/">
-    <meta property="og:title" content="MultMatrix — AI Subtitle Generator & Translator">
-    <meta property="og:description" content="Generate and translate subtitles with AI using a simple online workflow.">
+    <meta property="og:title" content="MultMatrix AI Subtitle Generator">
+    <meta property="og:description" content="Generate, translate, preview, and download video subtitles online, or create video with subtitles burned in.">
     <meta property="og:site_name" content="MultMatrix">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="MultMatrix — AI Subtitle Generator & Translator">
-    <meta name="twitter:description" content="Generate and translate subtitles with AI using a simple online workflow.">
+    <meta name="twitter:title" content="MultMatrix AI Subtitle Generator">
+    <meta name="twitter:description" content="Generate, translate, preview, and download video subtitles online.">
 
     <style>
         :root {
@@ -523,8 +523,17 @@
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 16px;
+        }
+
+        .feature-card {
+            grid-column: span 2;
+        }
+
+        .feature-card:nth-child(4),
+        .feature-card:nth-child(5) {
+            grid-column: span 3;
         }
 
         .card {
@@ -611,6 +620,101 @@
         .step p {
             color: var(--muted);
             font-size: .9rem;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .demo-card {
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 24px;
+            background: linear-gradient(145deg, rgba(22, 28, 48, .82), rgba(12, 15, 27, .72));
+            box-shadow: 0 22px 70px rgba(0, 0, 0, .3), inset 0 1px rgba(255, 255, 255, .045);
+        }
+
+        .demo-media {
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            background:
+                radial-gradient(circle at 20% 0%, rgba(84, 143, 255, .16), transparent 45%),
+                rgba(4, 6, 12, .7);
+        }
+
+        .demo-media video {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 14px;
+            background: #03050a;
+            object-fit: contain;
+        }
+
+        .demo-content {
+            padding: 28px;
+        }
+
+        .demo-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 15px;
+            color: #9db3ff;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+
+        .demo-number::before {
+            width: 18px;
+            height: 1px;
+            background: var(--gradient);
+            content: "";
+        }
+
+        .demo-content h3 {
+            font-size: 1.25rem;
+        }
+
+        .demo-list {
+            display: grid;
+            gap: 10px;
+            margin: 20px 0 0;
+            padding: 0;
+            color: var(--muted);
+            font-size: .88rem;
+            list-style: none;
+        }
+
+        .demo-list li {
+            position: relative;
+            padding-left: 21px;
+        }
+
+        .demo-list li::before {
+            position: absolute;
+            top: .57em;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--gradient);
+            box-shadow: 0 0 10px rgba(97, 165, 255, .5);
+            content: "";
+        }
+
+        .demo-note {
+            margin-top: 17px;
+            padding-top: 15px;
+            border-top: 1px solid var(--line);
+            color: #778198;
+            font-size: .74rem;
         }
 
         .use-case-grid {
@@ -760,12 +864,14 @@
             }
 
             .feature-grid,
-            .steps {
+            .steps,
+            .demo-grid {
                 grid-template-columns: 1fr;
             }
 
             .feature-card {
                 min-height: auto;
+                grid-column: auto;
             }
 
             .icon {
@@ -890,6 +996,7 @@
             </a>
             <div class="nav-links">
                 <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
                 <a href="#how-it-works">How it works</a>
                 <a href="#faq">FAQ</a>
                 <a class="button button-primary button-small" href="https://sub.multmatrix.com/">Open subtitle tool</a>
@@ -901,8 +1008,8 @@
         <section class="hero">
             <div class="container">
                 <div class="eyebrow"><span class="eyebrow-dot"></span> AI-powered subtitles</div>
-                <h1>Turn video into <span class="gradient-text">subtitles that travel.</span></h1>
-                <p class="hero-copy">Generate subtitles from video content and translate them for audiences in other languages, all through a focused online workflow.</p>
+                <h1>The AI subtitle generator for <span class="gradient-text">video that travels.</span></h1>
+                <p class="hero-copy">Generate and translate video subtitles, preview timing online, download editable VTT/SRT files, or create a video with subtitles burned in.</p>
                 <div class="hero-actions">
                     <a class="button button-primary" href="https://sub.multmatrix.com/">
                         Generate subtitles
@@ -912,7 +1019,7 @@
                     </a>
                     <a class="button button-secondary" href="#how-it-works">See how it works</a>
                 </div>
-                <p class="hero-note">Simple online subtitle generation and translation.</p>
+                <p class="hero-note">One online workflow from video to ready-to-use subtitles.</p>
 
                 <div class="preview-wrap" aria-label="Product interface preview">
                     <div class="preview">
@@ -974,6 +1081,54 @@
             </div>
         </section>
 
+        <section class="section" id="demo">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-label">Real output demo</span>
+                    <h2>See subtitles in context.</h2>
+                    <p>Preview a separate subtitle track in the browser or view a video with subtitles permanently rendered into the picture.</p>
+                </div>
+                <div class="demo-grid">
+                    <article class="demo-card">
+                        <div class="demo-media">
+                            <video controls preload="metadata">
+                                <source src="https://media.multmatrix.com/default.mp4" type="video/mp4">
+                                <track src="https://media.multmatrix.com/default.vtt" kind="subtitles" srclang="en" label="English" default>
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="demo-content">
+                            <span class="demo-number">Demo 01</span>
+                            <h3>Online subtitle preview</h3>
+                            <ul class="demo-list">
+                                <li>Preview generated subtitles directly in the browser.</li>
+                                <li>Check subtitle timing before downloading.</li>
+                                <li>Download editable subtitle files such as VTT/SRT from the main tool.</li>
+                            </ul>
+                            <p class="demo-note">Subtitle track display can depend on browser and cross-origin support. The main tool provides the full preview workflow.</p>
+                        </div>
+                    </article>
+                    <article class="demo-card">
+                        <div class="demo-media">
+                            <video controls preload="metadata">
+                                <source src="https://media.multmatrix.com/twitter_2062846757847879680_arc._-_el_ingeniero_que_construyo_Claude_Code_acaba_de_publi.hardsub.zh.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="demo-content">
+                            <span class="demo-number">Demo 02</span>
+                            <h3>Burned-in subtitle output</h3>
+                            <ul class="demo-list">
+                                <li>Generate a video with subtitles burned into the picture.</li>
+                                <li>Useful for sharing on platforms where subtitle tracks are not supported.</li>
+                                <li>The rendered subtitles remain visible as part of the video image.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section class="section" id="features">
             <div class="container">
                 <div class="section-heading">
@@ -1000,8 +1155,22 @@
                         <div class="icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M7 9h10M7 13h7M7 17h5" /></svg>
                         </div>
-                        <h3>Focused online workflow</h3>
-                        <p>Keep subtitle generation and translation together in a straightforward browser-based tool.</p>
+                        <h3>Online subtitle preview</h3>
+                        <p>Review subtitles with video in the browser and check their timing before downloading.</p>
+                    </article>
+                    <article class="card feature-card">
+                        <div class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 20h14" /></svg>
+                        </div>
+                        <h3>VTT & SRT downloads</h3>
+                        <p>Download editable subtitle files for use in video players, editors, and publishing workflows.</p>
+                    </article>
+                    <article class="card feature-card">
+                        <div class="icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m10 9 5 3-5 3V9Zm-4 8h12" /></svg>
+                        </div>
+                        <h3>Burned-in subtitle video</h3>
+                        <p>Create video output with subtitles rendered directly into the picture for easy sharing.</p>
                     </article>
                 </div>
             </div>
@@ -1011,21 +1180,21 @@
             <div class="container">
                 <div class="section-heading">
                     <span class="section-label">How it works</span>
-                    <h2>A simpler path to multilingual video.</h2>
-                    <p>Start with your video, let AI handle the heavy lifting, then use the subtitles for your audience.</p>
+                    <h2>A practical path from video to subtitles.</h2>
+                    <p>Start with a supported video link, generate and review subtitles, then choose the output that fits your workflow.</p>
                 </div>
                 <div class="steps">
                     <article class="step">
-                        <h3>Add your video content</h3>
-                        <p>Open the subtitle tool and provide the video you want to work with.</p>
+                        <h3>Add a supported video link</h3>
+                        <p>Open the subtitle tool and provide the video link you want to process.</p>
                     </article>
                     <article class="step">
-                        <h3>Generate and translate</h3>
-                        <p>Use AI to create subtitles, then translate them into another language when needed.</p>
+                        <h3>Generate, translate & preview</h3>
+                        <p>Create subtitles with AI, translate them when needed, and review timing with video.</p>
                     </article>
                     <article class="step">
-                        <h3>Use your subtitles</h3>
-                        <p>Bring clearer, more accessible video content to the people you want to reach.</p>
+                        <h3>Download your preferred output</h3>
+                        <p>Download editable VTT/SRT subtitles or create a video with subtitles burned in.</p>
                     </article>
                 </div>
             </div>
@@ -1072,19 +1241,27 @@
                 <div class="faq">
                     <details>
                         <summary>What is MultMatrix?</summary>
-                        <p>MultMatrix is an online AI subtitle tool for generating subtitles from video content and translating them into another language.</p>
+                        <p>MultMatrix is an AI video subtitle tool for generating, translating, previewing, and downloading subtitles online.</p>
                     </details>
                     <details>
-                        <summary>Can I translate generated subtitles?</summary>
-                        <p>Yes. The subtitle tool is designed to help generate subtitles and translate them for multilingual video content.</p>
+                        <summary>Can I translate subtitles?</summary>
+                        <p>Yes. You can translate generated subtitles to prepare video content for audiences in another language.</p>
                     </details>
                     <details>
-                        <summary>Who is the subtitle tool for?</summary>
-                        <p>It can support creators, educators, teams, and anyone who wants to make video content easier to understand across languages.</p>
+                        <summary>Can I preview subtitles online?</summary>
+                        <p>Yes. The main tool lets you preview generated subtitles with video so you can check the result and timing before downloading. Subtitle track display in the demo above may depend on browser support.</p>
                     </details>
                     <details>
-                        <summary>Where do I get started?</summary>
-                        <p>Open the MultMatrix subtitle tool at sub.multmatrix.com to begin.</p>
+                        <summary>What subtitle formats can I download?</summary>
+                        <p>You can download editable subtitle files such as VTT and SRT from the main subtitle tool.</p>
+                    </details>
+                    <details>
+                        <summary>Can I create burned-in subtitle videos?</summary>
+                        <p>Yes. MultMatrix can create video output with subtitles rendered into the picture, which is useful where separate subtitle tracks are not supported.</p>
+                    </details>
+                    <details>
+                        <summary>What video links are supported?</summary>
+                        <p>Supported links can vary by source and video availability. Open the main subtitle tool and provide your video link to check whether it can be processed.</p>
                     </details>
                 </div>
             </div>
@@ -1095,7 +1272,7 @@
                 <div class="cta-panel">
                     <span class="section-label">Start now</span>
                     <h2>Your next video can speak to more people.</h2>
-                    <p>Generate and translate subtitles with MultMatrix's focused online subtitle tool.</p>
+                    <p>Generate, translate, preview, and download subtitles, or create burned-in subtitle video output.</p>
                     <a class="button button-primary" href="https://sub.multmatrix.com/">
                         Open subtitle tool
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -1118,6 +1295,7 @@
             <span>AI-powered subtitle generation and translation.</span>
             <div class="footer-links">
                 <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
                 <a href="#faq">FAQ</a>
             </div>
             <span>© 2026 MultMatrix</span>
